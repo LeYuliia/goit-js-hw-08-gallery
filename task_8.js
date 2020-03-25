@@ -29,24 +29,19 @@ const jsGallery = document.querySelector(".js-gallery");
 jsGallery.append(...imgList);
 
 // Делегирование на галерее ul.js-gallery и получение url большого изображения
-jsGallery.addEventListener("click", onTagsClick);
 const lightboxImage = document.querySelector(".lightbox__image");
+const lightboxRef = document.querySelector(".lightbox");
+jsGallery.addEventListener("click", onTagsClick);
 function onTagsClick(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
-  } else {
-    // Подмена значения атрибута src элемента img.lightbox__image.
-    lightboxImage.setAttribute("src", event.target.getAttribute("data-source"));
   }
-}
-
-//Открытие модального окна по клику на элементе галереи.
-const openModal = document.querySelector(".gallery");
-const lightboxRef = document.querySelector(".lightbox");
-openModal.addEventListener("click", () => {
+  // Подмена значения атрибута src элемента img.lightbox__image.
+  lightboxImage.setAttribute("src", event.target.getAttribute("data-source"));
+  //Открытие модального окна по клику на элементе галереи.
   lightboxRef.classList.add("is-open");
-});
+}
 
 //Закрытие модального окна по клику на кнопку button[data-action="close-modal"].
 const closeModal = document.querySelector(
